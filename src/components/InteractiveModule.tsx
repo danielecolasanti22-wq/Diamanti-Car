@@ -318,38 +318,57 @@ export function MultiStepForm({ initialBrand }: { initialBrand?: string }) {
 }
 
 export function BrandGrid({ onSelectBrand }: { onSelectBrand: (id: string) => void }) {
+  const referenceBrands: Array<{ id: string; name: string; logo: string; selectable?: boolean }> = [
+    { id: 'abarth', name: 'Abarth', logo: 'https://upload.wikimedia.org/wikipedia/commons/9/92/Abarth-Scorpion-Logo.svg' },
+    { id: 'alfaromeo', name: 'Alfa Romeo', logo: 'https://upload.wikimedia.org/wikipedia/commons/1/1d/Alfa_Romeo_2015.svg' },
+    { id: 'volkswagen', name: 'Volkswagen', logo: 'https://upload.wikimedia.org/wikipedia/commons/6/6d/Volkswagen_logo_2019.svg', selectable: true },
+    { id: 'porsche', name: 'Porsche', logo: 'https://upload.wikimedia.org/wikipedia/en/2/2d/Porsche_crest.svg', selectable: true },
+    { id: 'honda', name: 'Honda', logo: 'https://upload.wikimedia.org/wikipedia/commons/7/7b/Honda_Logo.svg' },
+    { id: 'toyota', name: 'Toyota', logo: 'https://upload.wikimedia.org/wikipedia/commons/9/9d/Toyota_car_logo.svg', selectable: true },
+    { id: 'chevrolet', name: 'Chevrolet', logo: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/Chevrolet_logo.svg' },
+    { id: 'opel', name: 'Opel', logo: 'https://upload.wikimedia.org/wikipedia/commons/f/fd/Opel-Logo_2017.svg' },
+    { id: 'fiat', name: 'Fiat', logo: 'https://upload.wikimedia.org/wikipedia/commons/1/12/Fiat_logo.svg', selectable: true },
+    { id: 'skoda', name: 'Skoda', logo: 'https://upload.wikimedia.org/wikipedia/commons/4/4e/%C5%A0koda_Auto_logo.svg' },
+    { id: 'bmw', name: 'BMW', logo: 'https://upload.wikimedia.org/wikipedia/commons/4/44/BMW.svg', selectable: true },
+    { id: 'audi', name: 'Audi', logo: 'https://upload.wikimedia.org/wikipedia/commons/9/92/Audi-Logo_2016.svg', selectable: true },
+    { id: 'mercedes', name: 'MERCEDES-BENZ', logo: 'https://upload.wikimedia.org/wikipedia/commons/9/90/Mercedes-Logo.svg', selectable: true },
+    { id: 'ferrari', name: 'FERRARI', logo: 'https://upload.wikimedia.org/wikipedia/commons/d/d1/Ferrari-Logo.svg' },
+    { id: 'jeep', name: 'Jeep', logo: 'https://upload.wikimedia.org/wikipedia/commons/f/ff/Jeep_logo.svg', selectable: true },
+    { id: 'ford', name: 'Ford', logo: 'https://upload.wikimedia.org/wikipedia/commons/a/a0/Ford_Motor_Company_Logo.svg', selectable: true },
+    { id: 'jaguar', name: 'Jaguar', logo: 'https://upload.wikimedia.org/wikipedia/commons/6/69/Jaguar_2012_logo.svg' },
+    { id: 'tesla', name: 'Tesla', logo: 'https://upload.wikimedia.org/wikipedia/commons/e/e8/Tesla_logo.png' },
+    { id: 'hyundai', name: 'Hyundai', logo: 'https://upload.wikimedia.org/wikipedia/commons/4/44/Hyundai_Motor_Company_logo.svg' },
+    { id: 'mazda', name: 'Mazda', logo: 'https://upload.wikimedia.org/wikipedia/en/1/18/Mazda_logo_with_emblem.svg' },
+    { id: 'peugeot', name: 'Peugeot', logo: 'https://upload.wikimedia.org/wikipedia/en/9/9d/Peugeot_Logo.svg' },
+    { id: 'volvo', name: 'Volvo', logo: 'https://upload.wikimedia.org/wikipedia/commons/2/29/Volvo-Iron-Mark-Black.svg' },
+    { id: 'landrover', name: 'Land Rover', logo: 'https://upload.wikimedia.org/wikipedia/commons/7/75/Land_Rover_logo.png', selectable: true },
+  ];
+
   return (
-    <section className="section-padding bg-white relative">
+    <section className="py-16 bg-[#e9e9e9]">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-24">
-           <span className="text-accent font-black text-[10px] uppercase tracking-[0.3em] block mb-4">
-              <div className="w-10 h-px bg-accent mx-auto mb-4"></div>
-              I Nostri Marchi di Fiducia
-           </span>
-           <h2 className="text-4xl md:text-7xl font-black text-primary uppercase tracking-tighter">I cononi <br/><span className="text-accent italic font-serif lowercase">dell'automotive.</span></h2>
-           <p className="text-text-muted mt-6 font-medium max-w-xl mx-auto">Selezioniamo solo il meglio dai mercati europei, garantendo l'integrità di ogni brand.</p>
-        </div>
-        
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-          {BRANDS.map(brand => (
+        <div className="max-w-[1360px] mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-1.5">
+          {referenceBrands.map(brand => (
             <button
               key={brand.id}
-              onClick={() => onSelectBrand(brand.id)}
-              className="group bg-neutral-soft p-12 rounded-[32px] border border-neutral-border hover:border-accent hover:shadow-premium transition-all duration-700 text-center relative overflow-hidden"
+              onClick={() => brand.selectable && onSelectBrand(brand.id)}
+              className={`group bg-[#f1f1f1] min-h-[190px] border border-[#d2d2d2] text-center relative overflow-hidden flex flex-col justify-between px-4 py-5 ${
+                brand.selectable ? 'hover:border-accent cursor-pointer' : 'cursor-default'
+              }`}
             >
-              <div className="absolute top-0 right-0 w-16 h-16 bg-accent opacity-0 group-hover:opacity-5 transition-all duration-700 rounded-bl-full"></div>
-              <div className="h-16 mb-8 flex items-center justify-center">
-                <img src={brand.logo} alt={brand.name} className="max-h-full max-w-full grayscale brightness-0 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700 transform group-hover:scale-110" referrerPolicy="no-referrer" />
+              <div className="h-[110px] flex items-center justify-center">
+                <img
+                  src={brand.logo}
+                  alt={brand.name}
+                  className="max-h-[100px] max-w-full object-contain"
+                  referrerPolicy="no-referrer"
+                />
               </div>
-              <h4 className="font-black text-primary mb-2 uppercase tracking-tight text-lg">{brand.name}</h4>
-              <p className="text-[10px] text-text-muted font-bold uppercase tracking-widest opacity-60">{brand.note}</p>
-              <div className="mt-8 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
-                <span className="text-[10px] text-accent font-black uppercase tracking-[0.2em] flex items-center justify-center gap-2 underline underline-offset-4 decoration-accent/30">
-                  Seleziona Brand
-                </span>
-              </div>
+              <h4 className="text-[13px] leading-none font-medium text-[#191919]">{brand.name}</h4>
             </button>
           ))}
+          </div>
         </div>
       </div>
     </section>
