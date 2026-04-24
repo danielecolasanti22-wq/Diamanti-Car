@@ -4,27 +4,27 @@
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 
-  --color-primary: #0f172a;
-  --color-primary-light: #1e293b;
-  --color-secondary: #f8fafc;
+  --color-primary: #0b0b0b;
+  --color-primary-light: #1a1a1a;
+  --color-secondary: #ffffff;
 
-  --color-accent: #2563eb;
-  --color-accent-hover: #1d4ed8;
-  --color-accent-secondary: #0ea5e9;
+  --color-accent: #b68a35;
+  --color-accent-hover: #9c7326;
+  --color-accent-secondary: #d5b169;
 
-  --color-neutral-soft: #f8fafc;
-  --color-neutral-warm: #f1f5f9;
-  --color-neutral-border: #e2e8f0;
-  --color-text-main: #0f172a;
-  --color-text-muted: #64748b;
+  --color-neutral-soft: #faf9f6;
+  --color-neutral-warm: #f3f0e8;
+  --color-neutral-border: #e7dfcf;
+  --color-text-main: #0b0b0b;
+  --color-text-muted: #5f5a50;
 
-  --shadow-premium: 0 10px 30px -12px rgba(15, 23, 42, 0.18);
-  --shadow-premium-hover: 0 20px 40px -16px rgba(15, 23, 42, 0.22);
+  --shadow-premium: 0 10px 28px -12px rgba(20, 20, 20, 0.2);
+  --shadow-premium-hover: 0 18px 36px -14px rgba(20, 20, 20, 0.25);
 }
 
 @layer base {
   body {
-    @apply bg-slate-50 text-slate-900 font-sans antialiased;
+    @apply bg-neutral-soft text-text-main font-sans antialiased;
   }
 
   h1,
@@ -37,15 +37,15 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 text-sm inline-flex items-center justify-center gap-2;
+    @apply bg-accent hover:bg-accent-hover text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 text-sm inline-flex items-center justify-center gap-2;
   }
 
   .btn-soft {
-    @apply border border-slate-300 bg-white text-slate-800 hover:border-blue-300 hover:text-blue-700 font-medium py-3 px-6 rounded-lg transition-all duration-300 text-sm inline-flex items-center justify-center;
+    @apply border border-neutral-border bg-white text-primary hover:border-accent hover:text-accent font-medium py-3 px-6 rounded-lg transition-all duration-300 text-sm inline-flex items-center justify-center;
   }
 
   .btn-white {
-    @apply bg-white text-blue-700 hover:bg-blue-50 font-semibold py-3 px-6 rounded-lg transition-all duration-300 text-sm inline-flex items-center justify-center;
+    @apply bg-white text-primary hover:bg-neutral-soft font-semibold py-3 px-6 rounded-lg transition-all duration-300 text-sm inline-flex items-center justify-center;
   }
 
   .section-padding {
@@ -53,6 +53,6 @@
   }
 
   .card-professional {
-    @apply bg-white border border-slate-200 rounded-2xl p-6 transition-all duration-300 hover:shadow-premium;
+    @apply bg-white border border-neutral-border rounded-2xl p-6 transition-all duration-300 hover:shadow-premium;
   }
 }
